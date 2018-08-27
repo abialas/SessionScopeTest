@@ -1,8 +1,9 @@
 package com.us;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
 /**
@@ -12,18 +13,10 @@ import java.io.Serializable;
 @SessionScoped
 public class DefaultBean implements Serializable {
 
-    private String name;
+    @Inject
+    private HttpSession session;
 
-    @PostConstruct
-    public void init() {
-        name = "Adam";
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getSampleAttr() {
+        return session.getId();
     }
 }
